@@ -1,6 +1,7 @@
 package com.uninorte.ejemplo1;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 public class Cursos extends AppCompatActivity {
 LinearLayout main;
+    MediaPlayer cli;
     int count;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +27,12 @@ LinearLayout main;
         main=(LinearLayout) findViewById(R.id.MCurso);
         count=1;
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        cli = MediaPlayer.create(this, R.raw.clik1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Home(view);
+                cli.start();
+                generateLayout();
 
             }
         });
@@ -48,7 +52,7 @@ LinearLayout main;
                 Log.d("LayoutGeneratorLog","El boton "+view.getTag());
             }
         });
-        tv.setText(".  Ingrese el nombre del curso");
+        tv.setText(" Ingrese el nombre del curso");
 
         newLayout.addView(tv);
         newLayout.addView(et);
@@ -59,9 +63,5 @@ LinearLayout main;
     public void Home(View view) {
         Intent i = new Intent(this, Prueva.class);
         startActivity(i);
-    }
-
-    public void Crea(View view) {
-        generateLayout();
     }
 }

@@ -1,6 +1,7 @@
 package com.uninorte.ejemplo1;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 public class Estudiante extends AppCompatActivity {
     LinearLayout main;
+    MediaPlayer cli;
     int count;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +27,14 @@ public class Estudiante extends AppCompatActivity {
         main=(LinearLayout) findViewById(R.id.MEstudiantes);
         count=1;
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        cli = MediaPlayer.create(this, R.raw.clik1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Home(view);
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                cli.start();
+                generateLayout();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                      //  .setAction("Action", null).show();
             }
         });
     }
@@ -64,6 +68,6 @@ public class Estudiante extends AppCompatActivity {
     }
 
     public void CreaEst(View view) {
-        generateLayout();
+        Home(view);
     }
 }
